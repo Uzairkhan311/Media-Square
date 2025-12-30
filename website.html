@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media Square</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    :root {
+      --bg-dark: #020617;
+      --bg-deep: #0b1120;
+      --navy: #0f172a;
+      --navy-soft: #1f2937;
+      --accent: #14b8a6;   /* teal from logo */
+      --accent-soft: #22c55e;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --card-bg: #020617;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1f2937, #020617 56%);
+      color: var(--text-main);
+      scroll-behavior: smooth;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 8%;
+      background: rgba(2, 6, 23, 0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-left img {
+      width: 34px;
+      height: 34px;
+    }
+
+    .brand-name {
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* SECTIONS COMMON */
+    section {
+      padding: 70px 8%;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      margin: 0 0 12px;
+    }
+
+    .section-sub {
+      margin: 0 0 30px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* HERO (PAGE 1) */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.1fr);
+      gap: 36px;
+      align-items: center;
+      min-height: calc(100vh - 60px);
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-logo-row img {
+      width: 80px;
+      height: auto;
+    }
+
+    .hero-title-block h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-title-block span {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .hero-tagline {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn-main {
+      background: var(--accent);
+      color: var(--navy);
+    }
+
+    .btn-main:hover {
+      background: var(--accent-soft);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      border-color: rgba(148, 163, 184, 0.5);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+    }
+
+    .hero-right {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      min-height: 320px;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      background: radial-gradient(circle at top left, rgba(20,184,166,0.1), #020617);
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-overlay-tag {
+      position: absolute;
+      left: 18px;
+      bottom: 18px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.85);
+      border: 1px solid rgba(148,163,184,0.4);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* SERVICES (PAGE 2) */
+    .services {
+      background: radial-gradient(circle at top, #0b1120, #020617 60%);
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 22px;
+    }
+
+    .service-card {
+      position: relative;
+      padding: 22px 20px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top left, rgba(20,184,166,0.12), #020617);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(20,184,166,0.18), transparent 60%);
+      top: -60px;
+      right: -40px;
+      opacity: 0.9;
+    }
+
+    .service-label {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .service-title {
+      margin: 6px 0 6px;
+      font-size: 1.1rem;
+    }
+
+    .service-desc {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* CONTACT (PAGE 3) */
+    .contact {
+      background: #020617;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 26px;
+      align-items: flex-start;
+    }
+
+    .contact-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.95rem;
+    }
+
+    .contact-info-list li span {
+      color: var(--text-muted);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-actions .btn {
+      width: 100%;
+      justify-content: flex-start;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .btn-whatsapp {
+      background: #22c55e;
+      color: var(--navy);
+    }
+
+    .btn-form {
+      background: #0ea5e9;
+      color: var(--navy);
+    }
+
+    .btn-instagram {
+      background: linear-gradient(45deg,#f97316,#ec4899,#6366f1);
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 16px 0 26px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: #020617;
+      border-top: 1px solid rgba(148,163,184,0.3);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0,1fr);
+        padding-top: 40px;
+      }
+      .hero-right {
+        order: -1;
+      }
+      .contact-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .hero-title-block h1 {
+        font-size: 2rem;
+      }
+      .hero-logo-row img {
+        width: 64px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-left">
+      <img src="media square logo.png" alt="Media Square ">
+      <div class="brand-name">Media Square</div>
+    </div>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- PAGE 1: HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-left">
+      <div class="hero-logo-row">
+        <img src="media square logo.png" alt="Media Square ">
+        <div class="hero-title-block">
+          <h1>MEDIA SQUARE</h1>
+          <span>Digital design studio</span>
+        </div>
+      </div>
+
+      <p class="hero-tagline">
+        Turning your vision into reality with modern websites, graphics, and digital experiences.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="https://wa.me/919307229744?text=Hi%20Media%20Square,%20I%20need%20help%20with..."
+           target="_blank" class="btn btn-main">
+          Chat on WhatsApp
+        </a>
+        <a href="#services" class="btn btn-ghost">
+          View Services
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- first page first image from ms p1 -->
+      <img src="first page first image.jpg" alt="Sample web project">
+      <div class="hero-overlay-tag">Featured work · Landing page concept</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2: SERVICES -->
+  <section id="services" class="services">
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">
+      Focused, student‑friendly packages that help brands look sharp online without overcomplicating things.
+    </p>
+
+    <div class="service-grid">
+
+      <article class="service-card">
+        <div class="service-label">01 · Visibility</div>
+        <h3 class="service-title">Google Ranking</h3>
+        <p class="service-desc">
+          Basic on‑page SEO, clean structure and performance tweaks so your website is ready to be found.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-label">02 · Visuals</div>
+        <h3 class="service-title">Graphic Designing</h3>
+        <p class="service-desc">
+          Social media posts, posters and brand assets that match your identity and feel modern and minimal.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-label">03 · Experience</div>
+        <h3 class="service-title">Web Development</h3>
+        <p class="service-desc">
+          Lightweight landing pages and portfolio sites built for clarity, speed and mobile‑first browsing.
+        </p>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PAGE 3: CONTACT -->
+  <section id="contact" class="contact">
+    <h2 class="section-title">Contact Us</h2>
+    <p class="section-sub">
+      Share a brief about your project and we’ll get back within a few hours with next steps.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-info-list">
+          <li><span>Email:</span> uzairkhanbh8@gmail.com</li>
+          <li><span>Phone / WhatsApp:</span> +91 9307229744</li>
+          <li><span>Instagram:</span> @uzair.687</li>
+        </ul>
+      </div>
+
+      <div class="contact-actions">
+        <a href="https://wa.me/919307229744?text=Hi%20Media%20Square,%20I%20have%20a%20project%20idea..."
+           target="_blank" class="btn btn-whatsapp">
+          WhatsApp · Start a chat
+        </a>
+
+        <!-- Replace FORM_ID with your actual Google Form ID or full link -->
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSelQ7tWKEk8PdLqL0jL5j8T4N_3e2aYuN7ak9nnz8U7HoR-2Q/viewform?usp=publish-editor"
+           target="_blank" class="btn btn-form">
+          Google Form · Project brief
+        </a>
+
+        <a href="mailto:uzairkhanbh8@gmail.com" class="btn btn-ghost">
+          Email · Send details
+        </a>
+
+        <a href="https://www.instagram.com/uzair.687/"
+           target="_blank" class="btn btn-instagram">
+          Instagram · @uzair.687
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> Media Square · All rights reserved.
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>

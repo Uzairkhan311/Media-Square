@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Media Square - Transforming Vision Into Value</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    body { background: #f9f9fa; }
+    .navbar-brand img { height: 48px; }
+    .hero { padding: 60px 0 30px; text-align: center; background: #fff; }
+    .tagline { font-size: 1.4rem; color: #333; font-style: italic; margin-bottom: 1.5rem; }
+    .gallery-img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; }
+    .contact-cta { font-weight: 500; }
+    .whatsapp-btn { background: #25d366; color: white; }
+    .footer { background: #222; color: #bbb; padding: 1rem; text-align: center; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container">
+    <a class="navbar-brand" href="index.html">
+      <img src="assets/logo.png" alt="Media Square Logo"> Media Square
+    </a>
+    <div>
+      <a class="nav-link d-inline" href="index.html">Home</a>
+      <a class="nav-link d-inline" href="graphics.html">Graphics</a>
+      <a class="nav-link d-inline" href="websites.html">Websites</a>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <!-- HERO (Home only) -->
+  <div class="hero">
+    <h1 class="display-4 fw-bold">Transforming Vision Into Value.</h1>
+    <div class="tagline">Where professional service meets creative innovation, with a personal touch.</div>
+    <p class="lead contact-cta">Hi, I’m Uzair Khan.<br>Let’s elevate your brand together!</p>
+    <a href="#contact" class="btn btn-primary btn-lg mt-3">Get in Touch</a>
+  </div>
+  
+  <!-- GALLERIES (graphics.html / websites.html) -->
+  <!-- Replace images with your own later! -->
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+    <div class="col">
+      <img src="https://source.unsplash.com/600x400/?creative,design" class="gallery-img" alt="Sample 1">
+    </div>
+    <div class="col">
+      <img src="https://source.unsplash.com/600x400/?branding,colors" class="gallery-img" alt="Sample 2">
+    </div>
+    <div class="col">
+      <img src="https://source.unsplash.com/600x400/?minimal,art" class="gallery-img" alt="Sample 3">
+    </div>
+  </div>
+  <!-- /GALLERIES -->
+  
+  <!-- CONTACT -->
+  <div id="contact" class="card mt-5 mb-4 p-4 shadow-sm">
+    <h2>Contact Media Square</h2>
+    <div class="mb-2">
+      <a class="btn whatsapp-btn mb-2" href="https://wa.me/9307229744" target="_blank">
+        Message on WhatsApp
+      </a>
+      <div><b>Phone:</b> <a href="tel:9307229744">9307229744</a></div>
+      <div><b>Email:</b> <a href="mailto:uzairkhanbh8@gmail.com">uzairkhanbh8@gmail.com</a></div>
+    </div>
+    <form id="contactForm">
+      <div class="row mb-2">
+        <div class="col"><input type="text" required class="form-control" placeholder="Your Name"></div>
+        <div class="col"><input type="email" required class="form-control" placeholder="Your Email"></div>
+      </div>
+      <div class="mb-2">
+        <textarea class="form-control" required placeholder="Your Message" rows="3"></textarea>
+      </div>
+      <button class="btn btn-primary" type="submit">Send Message</button>
+    </form>
+    <div id="formSuccess" class="alert alert-success mt-3" style="display:none;">Thank you! We’ll get back to you soon.</div>
+  </div>
+</div>
+<footer class="footer">
+  &copy; 2025 Media Square. All rights reserved.
+</footer>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.getElementById('contactForm')?.addEventListener('submit', function(e){
+  e.preventDefault();
+  document.getElementById('formSuccess').style.display = 'block';
+  this.reset();
+});
+</script>
+</body>
+</html>
